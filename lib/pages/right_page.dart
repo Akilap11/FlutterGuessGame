@@ -16,12 +16,8 @@ class Right extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Yes! You guessed it right! ",
-              style: TextStyle(fontSize: 30),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              "My secret number is: ",
+              "Yes! You guessed it right!\nMy secret number is",
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 10),

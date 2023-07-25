@@ -43,11 +43,11 @@ class _HomePageState extends State<HomePage> {
                 Image.asset(
                   'assets/guess.png',
                   height: 300,
-                  width: 200,
+                  width: 250,
                 ),
-                const SizedBox(height: 10),
                 const Text(
-                  "I have a secret number in my mind (1-10). You have 3 chances to guess it. Can you guess it? ",
+                  "I have a secret number in my mind (1-10) \nYou have 3 chances to guess it. \n  Can you guess it?",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(height: 30),
