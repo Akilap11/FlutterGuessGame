@@ -14,17 +14,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int myNumber = 0;
   int counter = 0;
-  //random number should be generated first before the build
-  //look bottom for the initstate code!
 
   //to get the value from the textbox
   final mycontroller = TextEditingController();
-  //Clean up the controller when the widget is disposed.
-  //after we go to another page, text field will be cleared
+
+  //random number should be generated first before the build
+  //init state runs when the application starts.
   @override
-  void dispose() {
-    mycontroller.dispose();
-    super.dispose();
+  void initState() {
+    int randomNum = Random().nextInt(10) + 1;
+    myNumber = randomNum;
+    super.initState();
   }
 
   @override
@@ -38,18 +38,19 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/ss.jpg',
+              'assets/guess.png',
               height: 300,
               width: 200,
             ),
             const SizedBox(height: 10),
             const Text(
-              "I have a secret number in my mind. ",
+              "I have a secret number in my mind (1-10). You have 3 chances to guess it. Can you guess it? ",
               style: TextStyle(fontSize: 20),
             ),
-            const Text(
-              "Can you guess it?(1-10)",
-              style: TextStyle(fontSize: 20),
+            const SizedBox(height: 30),
+            Text(
+              "$counter of 3 chances are taken",
+              style: const TextStyle(fontSize: 20),
             ),
             TextField(
               controller: mycontroller,
@@ -60,28 +61,40 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 counter++;
-                if (counter > 3) {
+
+                if (counter == 3) {
                   //Reset the Counter
                   //go to game over screen(pushreplacement)
                   counter = 0;
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GameOver()));
+                  if (mycontroller.text.toString() == myNumber.toString()) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => right(myNumber: myNumber)));
+                  } else {
+                    mycontroller.clear();
+                    setState(() {});
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                GameOver(myNumber: myNumber)));
+                  }
                 } else {
                   //get input from user and convert it to int
                   //if input is equal to myNumber, go to right page(pushreplacement)
                   //if input is not equal to myNumber, go to wrong page(push )
 
                   if (mycontroller.text.toString() == myNumber.toString()) {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => const right()));
-                  } else {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                wrong(mycontroller: mycontroller)));
+                            builder: (context) => right(myNumber: myNumber)));
+                  } else {
+                    mycontroller.clear();
+                    setState(() {});
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const wrong()));
                   }
                 }
               },
@@ -94,13 +107,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-//init State code should be here. init state runs when the application starts.
-  @override
-  void initState() {
-    int randomNum = Random().nextInt(10) + 1;
-    myNumber = randomNum;
-    super.initState();
   }
 }
