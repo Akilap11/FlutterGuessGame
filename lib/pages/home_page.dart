@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 TextField(
                   keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
                   ],
                   controller: mycontroller,
                   textAlign: TextAlign.center,
@@ -99,7 +99,10 @@ class _HomePageState extends State<HomePage> {
                                 builder: (context) =>
                                     Right(myNumber: myNumber)));
                       } else {
+                        //controller will clear
                         mycontroller.clear();
+                        //*important
+                        //setState keep the counter without resettings
                         setState(() {});
                         Navigator.push(
                             context,
