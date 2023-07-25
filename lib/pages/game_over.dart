@@ -43,7 +43,7 @@ class GameOver extends StatelessWidget {
                           builder: (context) => const HomePage()));
                 },
                 child: const Text(
-                  "Start Again",
+                  "Start the Game Again",
                   style: TextStyle(fontSize: 20),
                 ))
           ],

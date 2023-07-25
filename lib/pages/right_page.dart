@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_7_game/pages/home_page.dart';
 
-class right extends StatelessWidget {
+class Right extends StatelessWidget {
   final int myNumber;
-  const right({Key? key, required this.myNumber}) : super(key: key);
+  const Right({Key? key, required this.myNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class right extends StatelessWidget {
                           builder: (context) => const HomePage()));
                 },
                 child: const Text(
-                  "Start Again",
+                  "Start the Game Again",
                   style: TextStyle(fontSize: 20),
                 ))
           ],

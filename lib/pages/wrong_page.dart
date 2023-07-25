@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_7_game/pages/home_page.dart';
 
-class wrong extends StatelessWidget {
-  const wrong({super.key});
+class Wrong extends StatelessWidget {
+  const Wrong({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class wrong extends StatelessWidget {
                           builder: (context) => const HomePage()));
                 },
                 child: const Text(
-                  "Guess Again",
+                  "Try Again",
                   style: TextStyle(fontSize: 20),
                 ))
           ],
